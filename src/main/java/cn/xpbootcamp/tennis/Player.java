@@ -33,4 +33,20 @@ public class Player {
   public void addPlayerPoint() {
     this.setPlayerPoint(this.getPlayerPoint() + 1);
   }
+
+  public void setPlayerResult() {
+    int playerPoint = this.getPlayerPoint();
+    if (playerPoint == 0) {
+      this.setPlayerResult("Love");
+    }
+    if (playerPoint == 1) {
+      this.setPlayerResult("Fifteen");
+    }
+    if (playerPoint == 2) {
+      this.setPlayerResult("Thirty");
+    }
+    if (playerPoint == 3) {
+      this.setPlayerResult("Forty");
+    }
+  }
 }
