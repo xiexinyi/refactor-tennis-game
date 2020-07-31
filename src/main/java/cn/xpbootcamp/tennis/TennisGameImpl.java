@@ -40,7 +40,7 @@ public class TennisGameImpl implements TennisGame {
             score = "Advantage " + advantagedPlayer.getPlayerName();
         }
 
-        if (advantagedPlayer.getPlayerPoint() >= 4 && laggingPlayer.getPlayerPoint() >= 0
+        if (advantagedPlayer.getPlayerPoint() >= 4
             && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() >= 2)) {
             score = "Win for " + advantagedPlayer.getPlayerName();
         }
