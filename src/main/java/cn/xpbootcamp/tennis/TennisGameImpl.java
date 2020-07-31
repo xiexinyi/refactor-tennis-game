@@ -35,17 +35,25 @@ public class TennisGameImpl implements TennisGame {
             laggingPlayer = player1;
         }
 
-        if (laggingPlayer.getPlayerPoint() >= 3
-            && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() < 2)) {
+        if (isAdvantage(advantagedPlayer, laggingPlayer)) {
             return "Advantage " + advantagedPlayer.getPlayerName();
         }
 
-        if (advantagedPlayer.getPlayerPoint() >= 4
-            && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() >= 2)) {
+        if (isWin(advantagedPlayer, laggingPlayer)) {
             return "Win for " + advantagedPlayer.getPlayerName();
         }
 
         return player1.getPlayerResult() + "-" + player2.getPlayerResult();
+    }
+
+    private boolean isWin(Player advantagedPlayer, Player laggingPlayer) {
+        return advantagedPlayer.getPlayerPoint() >= 4
+            && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() >= 2);
+    }
+
+    private boolean isAdvantage(Player advantagedPlayer, Player laggingPlayer) {
+        return laggingPlayer.getPlayerPoint() >= 3
+            && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() < 2);
     }
 
     private String getScoreWhenPointsAreEqual(int playerPoints) {
