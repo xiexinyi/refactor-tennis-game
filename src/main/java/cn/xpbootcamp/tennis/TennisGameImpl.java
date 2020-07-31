@@ -1,8 +1,6 @@
 package cn.xpbootcamp.tennis;
 
 public class TennisGameImpl implements TennisGame {
-    public int player1Point = 0;
-    public int player2Point = 0;
 
     public String player1Result = "";
     public String player2Result = "";
@@ -17,6 +15,8 @@ public class TennisGameImpl implements TennisGame {
 
     public String getScore() {
         String score = "";
+        int player1Point = player1.getPlayerPoint();
+        int player2Point = player2.getPlayerPoint();
         if (player1Point == player2Point && player1Point < 4) {
             if (player1Point == 0)
                 score = "Love";
@@ -109,11 +109,13 @@ public class TennisGameImpl implements TennisGame {
     }
 
     public void player1Score() {
-        player1Point++;
+      int player1Point = player1.getPlayerPoint();
+      player1.setPlayerPoint(player1Point + 1);
     }
 
     public void player2Score() {
-        player2Point++;
+      int player2Point = player2.getPlayerPoint();
+      player2.setPlayerPoint(player2Point + 1);
     }
 
     public void wonPoint(String player) {
