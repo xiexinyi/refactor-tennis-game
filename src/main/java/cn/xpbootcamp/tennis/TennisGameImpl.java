@@ -6,12 +6,13 @@ public class TennisGameImpl implements TennisGame {
 
     public String player1Result = "";
     public String player2Result = "";
-    private String player1Name;
-    private String player2Name;
+
+    private Player player1 = new Player();
+    private Player player2 = new Player();
 
     public TennisGameImpl(String player1Name, String player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
+        this.player1.setPlayerName(player1Name);
+        this.player2.setPlayerName(player2Name);
     }
 
     public String getScore() {
