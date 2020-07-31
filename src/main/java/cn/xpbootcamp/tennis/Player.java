@@ -29,4 +29,8 @@ public class Player {
   public void setPlayerName(String playerName) {
     this.playerName = playerName;
   }
+
+  public void addPlayerPoint() {
+    this.setPlayerPoint(this.getPlayerPoint() + 1);
+  }
 }

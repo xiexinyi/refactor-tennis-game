@@ -73,20 +73,10 @@ public class TennisGameImpl implements TennisGame {
         }
     }
 
-    public void player1Score() {
-      int player1Point = player1.getPlayerPoint();
-      player1.setPlayerPoint(player1Point + 1);
-    }
-
-    public void player2Score() {
-      int player2Point = player2.getPlayerPoint();
-      player2.setPlayerPoint(player2Point + 1);
-    }
-
     public void wonPoint(String player) {
         if (player == "player1")
-            player1Score();
+            player1.addPlayerPoint();
         else
-            player2Score();
+            player2.addPlayerPoint();
     }
 }
