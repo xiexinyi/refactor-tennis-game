@@ -1,7 +1,5 @@
 package cn.xpbootcamp.tennis;
 
-import static java.lang.Integer.min;
-
 public class TennisGameImpl implements TennisGame {
 
     private Player player1 = new Player();
