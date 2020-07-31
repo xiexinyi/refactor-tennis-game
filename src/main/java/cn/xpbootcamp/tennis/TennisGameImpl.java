@@ -36,27 +36,11 @@ public class TennisGameImpl implements TennisGame {
         }
 
         if (player1Point > player2Point && player1Point < 4) {
-            if (player1Point == 2)
-                player1.setPlayerResult("Thirty");
-            if (player1Point == 3)
-                player1.setPlayerResult("Forty");
-            if (player2Point == 1)
-                player2.setPlayerResult("Fifteen");
-            if (player2Point == 2)
-                player2.setPlayerResult("Thirty");
-
+            setResultsWhenNoPlayerReachFourPoints(player1, player2);
             score = player1.getPlayerResult() + "-" + player2.getPlayerResult();
         }
         if (player2Point > player1Point && player2Point < 4) {
-            if (player2Point == 2)
-                player2.setPlayerResult("Thirty");
-            if (player2Point == 3)
-                player2.setPlayerResult("Forty");
-            if (player1Point == 1)
-                player1.setPlayerResult("Fifteen");
-            if (player1Point == 2)
-                player1.setPlayerResult("Thirty");
-
+            setResultsWhenNoPlayerReachFourPoints(player2, player1);
             score = player1.getPlayerResult() + "-" + player2.getPlayerResult();
         }
 
@@ -119,5 +103,16 @@ public class TennisGameImpl implements TennisGame {
             advantagedPlayer.setPlayerResult("Forty");
 
         zeroPointPlayer.setPlayerResult("Love");
+    }
+
+    private void setResultsWhenNoPlayerReachFourPoints(Player advantagedPlayer, Player laggingPlayer) {
+        if (advantagedPlayer.getPlayerPoint() == 2)
+            advantagedPlayer.setPlayerResult("Thirty");
+        if (advantagedPlayer.getPlayerPoint() == 3)
+            advantagedPlayer.setPlayerResult("Forty");
+        if (laggingPlayer.getPlayerPoint() == 1)
+            laggingPlayer.setPlayerResult("Fifteen");
+        if (laggingPlayer.getPlayerPoint() == 2)
+            laggingPlayer.setPlayerResult("Thirty");
     }
 }
