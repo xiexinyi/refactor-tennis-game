@@ -27,25 +27,11 @@ public class TennisGameImpl implements TennisGame {
             score = "Deuce";
 
         if (player1Point > 0 && player2Point == 0) {
-            if (player1Point == 1)
-                player1.setPlayerResult("Fifteen");
-            if (player1Point == 2)
-                player1.setPlayerResult("Thirty");
-            if (player1Point == 3)
-                player1.setPlayerResult("Forty");
-
-            player2.setPlayerResult("Love");
+            setResultsWhenOnePlayerPointIsZero(player1, player2);
             score = player1.getPlayerResult() + "-" + player2.getPlayerResult();
         }
         if (player2Point > 0 && player1Point == 0) {
-            if (player2Point == 1)
-                player2.setPlayerResult("Fifteen");
-            if (player2Point == 2)
-                player2.setPlayerResult("Thirty");
-            if (player2Point == 3)
-                player2.setPlayerResult("Forty");
-
-            player1.setPlayerResult("Love");
+            setResultsWhenOnePlayerPointIsZero(player2, player1);
             score = player1.getPlayerResult() + "-" + player2.getPlayerResult();
         }
 
@@ -122,5 +108,16 @@ public class TennisGameImpl implements TennisGame {
             player1Score();
         else
             player2Score();
+    }
+
+    private void setResultsWhenOnePlayerPointIsZero(Player advantagedPlayer, Player zeroPointPlayer) {
+        if (advantagedPlayer.getPlayerPoint() == 1)
+            advantagedPlayer.setPlayerResult("Fifteen");
+        if (advantagedPlayer.getPlayerPoint() == 2)
+            advantagedPlayer.setPlayerResult("Thirty");
+        if (advantagedPlayer.getPlayerPoint() == 3)
+            advantagedPlayer.setPlayerResult("Forty");
+
+        zeroPointPlayer.setPlayerResult("Love");
     }
 }
