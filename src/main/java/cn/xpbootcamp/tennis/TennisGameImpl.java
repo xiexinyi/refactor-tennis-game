@@ -95,24 +95,28 @@ public class TennisGameImpl implements TennisGame {
     }
 
     private void setResultsWhenOnePlayerPointIsZero(Player advantagedPlayer, Player zeroPointPlayer) {
-        if (advantagedPlayer.getPlayerPoint() == 1)
+        int advantagedPlayerPoint = advantagedPlayer.getPlayerPoint();
+        if (advantagedPlayerPoint == 1)
             advantagedPlayer.setPlayerResult("Fifteen");
-        if (advantagedPlayer.getPlayerPoint() == 2)
+        if (advantagedPlayerPoint == 2)
             advantagedPlayer.setPlayerResult("Thirty");
-        if (advantagedPlayer.getPlayerPoint() == 3)
+        if (advantagedPlayerPoint == 3)
             advantagedPlayer.setPlayerResult("Forty");
 
         zeroPointPlayer.setPlayerResult("Love");
     }
 
     private void setResultsWhenNoPlayerReachFourPoints(Player advantagedPlayer, Player laggingPlayer) {
-        if (advantagedPlayer.getPlayerPoint() == 2)
+        int advantagedPlayerPoint = advantagedPlayer.getPlayerPoint();
+        if (advantagedPlayerPoint == 2)
             advantagedPlayer.setPlayerResult("Thirty");
-        if (advantagedPlayer.getPlayerPoint() == 3)
+        if (advantagedPlayerPoint == 3)
             advantagedPlayer.setPlayerResult("Forty");
-        if (laggingPlayer.getPlayerPoint() == 1)
+
+        int laggingPlayerPoint = laggingPlayer.getPlayerPoint();
+        if (laggingPlayerPoint == 1)
             laggingPlayer.setPlayerResult("Fifteen");
-        if (laggingPlayer.getPlayerPoint() == 2)
+        if (laggingPlayerPoint == 2)
             laggingPlayer.setPlayerResult("Thirty");
     }
 }
