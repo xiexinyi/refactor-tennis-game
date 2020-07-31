@@ -66,8 +66,8 @@ public class TennisGameImpl implements TennisGame {
           }
       }
 
-    public void wonPoint(String player) {
-        if (player == "player1")
+    public void wonPoint(String playerName) {
+        if (playerName.equals(player1.getPlayerName()))
             player1.addPlayerPoint();
         else
             player2.addPlayerPoint();
