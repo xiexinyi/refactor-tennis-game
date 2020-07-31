@@ -18,12 +18,9 @@ public class TennisGameImpl implements TennisGame {
         setPlayerResult(player1);
         setPlayerResult(player2);
 
-        if (player1Point == player2Point && player1Point < 4) {
-            score = player1.getPlayerResult() +  "-All";
+        if (player1Point == player2Point) {
+            return getScoreWhenPointsAreEqual(player1Point);
         }
-
-        if (player1Point == player2Point && player1Point >= 3)
-            score = "Deuce";
 
         if (player1Point != player2Point) {
             score = player1.getPlayerResult() + "-" + player2.getPlayerResult();
@@ -45,6 +42,14 @@ public class TennisGameImpl implements TennisGame {
         }
         return score;
     }
+
+    private String getScoreWhenPointsAreEqual(int playerPoints) {
+          if (playerPoints < 3) {
+              return player1.getPlayerResult() +  "-All";
+          } else {
+              return "Deuce";
+          }
+      }
 
     private void setPlayerResult(Player player) {
         int playerPoint = player.getPlayerPoint();
