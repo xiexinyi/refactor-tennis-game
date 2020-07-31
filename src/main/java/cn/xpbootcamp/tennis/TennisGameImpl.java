@@ -2,6 +2,11 @@ package cn.xpbootcamp.tennis;
 
 public class TennisGameImpl implements TennisGame {
 
+    private int SCORE_GAP_FOR_WIN = 2;
+    private int MIN_SCORE_FOR_ADVANTAGE = 3;
+    private int MIN_SCORE_FOR_DEUCE = 3;
+    private int MIN_SCORE_FOR_WIN = 4;
+
     private Player player1 = new Player();
     private Player player2 = new Player();
 
@@ -44,17 +49,17 @@ public class TennisGameImpl implements TennisGame {
     }
 
     private boolean isWin(Player advantagedPlayer, Player laggingPlayer) {
-        return advantagedPlayer.getPlayerPoint() >= 4
-            && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() >= 2);
+        return advantagedPlayer.getPlayerPoint() >= MIN_SCORE_FOR_WIN
+            && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() >= SCORE_GAP_FOR_WIN);
     }
 
     private boolean isAdvantage(Player advantagedPlayer, Player laggingPlayer) {
-        return laggingPlayer.getPlayerPoint() >= 3
-            && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() < 2);
+        return laggingPlayer.getPlayerPoint() >= MIN_SCORE_FOR_ADVANTAGE
+            && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() < SCORE_GAP_FOR_WIN);
     }
 
     private String getScoreWhenPointsAreEqual() {
-          if (player1.getPlayerPoint() < 3) {
+          if (player1.getPlayerPoint() < MIN_SCORE_FOR_DEUCE) {
               return player1.getPlayerResult() +  "-All";
           } else {
               return "Deuce";
