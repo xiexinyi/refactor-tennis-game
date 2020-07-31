@@ -25,7 +25,6 @@ public class TennisGameImpl implements TennisGame {
     }
 
     private String getScoreWhenPointsAreNotEqual(int player1Point, int player2Point) {
-        String score = player1.getPlayerResult() + "-" + player2.getPlayerResult();
         Player advantagedPlayer;
         Player laggingPlayer;
         if (player1Point > player2Point) {
@@ -36,15 +35,17 @@ public class TennisGameImpl implements TennisGame {
             laggingPlayer = player1;
         }
 
-        if (laggingPlayer.getPlayerPoint() >= 3) {
-            score = "Advantage " + advantagedPlayer.getPlayerName();
+        if (laggingPlayer.getPlayerPoint() >= 3
+            && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() < 2)) {
+            return "Advantage " + advantagedPlayer.getPlayerName();
         }
 
         if (advantagedPlayer.getPlayerPoint() >= 4
             && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() >= 2)) {
-            score = "Win for " + advantagedPlayer.getPlayerName();
+            return "Win for " + advantagedPlayer.getPlayerName();
         }
-        return score;
+
+        return player1.getPlayerResult() + "-" + player2.getPlayerResult();
     }
 
     private String getScoreWhenPointsAreEqual(int playerPoints) {
