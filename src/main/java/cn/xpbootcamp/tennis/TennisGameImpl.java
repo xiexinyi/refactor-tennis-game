@@ -1,5 +1,7 @@
 package cn.xpbootcamp.tennis;
 
+import static java.lang.Integer.min;
+
 public class TennisGameImpl implements TennisGame {
 
     private Player player1 = new Player();
@@ -11,7 +13,6 @@ public class TennisGameImpl implements TennisGame {
     }
 
     public String getScore() {
-        String score = "";
         int player1Point = player1.getPlayerPoint();
         int player2Point = player2.getPlayerPoint();
 
@@ -20,25 +21,30 @@ public class TennisGameImpl implements TennisGame {
 
         if (player1Point == player2Point) {
             return getScoreWhenPointsAreEqual(player1Point);
+        } else {
+            return getScoreWhenPointsAreNotEqual(player1Point, player2Point);
+        }
+    }
+
+    private String getScoreWhenPointsAreNotEqual(int player1Point, int player2Point) {
+        String score = player1.getPlayerResult() + "-" + player2.getPlayerResult();
+        Player advantagedPlayer;
+        Player laggingPlayer;
+        if (player1Point > player2Point) {
+            advantagedPlayer = player1;
+            laggingPlayer = player2;
+        } else {
+            advantagedPlayer = player2;
+            laggingPlayer = player1;
         }
 
-        if (player1Point != player2Point) {
-            score = player1.getPlayerResult() + "-" + player2.getPlayerResult();
+        if (laggingPlayer.getPlayerPoint() >= 3) {
+            score = "Advantage " + advantagedPlayer.getPlayerName();
         }
 
-        if (player1Point > player2Point && player2Point >= 3) {
-            score = "Advantage player1";
-        }
-
-        if (player2Point > player1Point && player1Point >= 3) {
-            score = "Advantage player2";
-        }
-
-        if (player1Point >= 4 && player2Point >= 0 && (player1Point - player2Point) >= 2) {
-            score = "Win for player1";
-        }
-        if (player2Point >= 4 && player1Point >= 0 && (player2Point - player1Point) >= 2) {
-            score = "Win for player2";
+        if (advantagedPlayer.getPlayerPoint() >= 4 && laggingPlayer.getPlayerPoint() >= 0
+            && (advantagedPlayer.getPlayerPoint() - laggingPlayer.getPlayerPoint() >= 2)) {
+            score = "Win for " + advantagedPlayer.getPlayerName();
         }
         return score;
     }
